@@ -2,6 +2,7 @@ const {getRows}=require("../services/application.services")
 
 const { application } = require("express");
 
+
 async function get(req, res, next) {
   try {
  const db =await getRows();
