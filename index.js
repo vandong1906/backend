@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 const cors = require('cors');
+app.use(express.json());
 require('dotenv').config()
 
 const application =require('../Backend/src/routes/application.router')

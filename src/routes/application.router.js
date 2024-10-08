@@ -6,12 +6,12 @@ const applicationController = require('../controllers/application.controller');
 router.get('/', applicationController.get);
   
 /* POST programming language */
-router.post('/', applicationController.create);
+router.post('/', applicationController.createSell);
 
 /* PUT programming language */
 router.put('/:id', applicationController.update);
 
 /* DELETE programming language */
-router.delete('/:id', applicationController.remove);
+router.delete('/:id', applicationController.remove1);
 
 module.exports = router;
