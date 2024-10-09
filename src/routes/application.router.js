@@ -11,8 +11,8 @@ router.post('/', applicationController.createSell);
 router.post('/Brand', brandController.createBrand);
 /* PUT programming language */
 router.put('/:id', applicationController.update);
-
+router.put('/Brand/:id', brandController.updateBrand);
 /* DELETE programming language */
 router.delete('/:id', applicationController.remove1);
-
+router.delete('/Brand/:id', brandController.removeBrand);
 module.exports = router;
