@@ -1,7 +1,14 @@
-const Usershop=require('../models/user.model')
+const shoppingCart = require("../models/shoppingCart.model");
+const Usershop = require("../models/user.model");
+
+
 async function getAll() {
     try {
-        return await Usershop.findAll();
+        return await Usershop.findAll({
+            include: {
+                model: shoppingCart,
+              }
+          })
     }
     catch (error) {
 
