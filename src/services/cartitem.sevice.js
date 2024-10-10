@@ -1,35 +1,6 @@
-const { Sequelize, DataTypes } = require('sequelize');
-const db = require('../configs/db.config')
+const cartItem1 = require("../models/cartitem.model");
 
-const sequelize = new Sequelize(db.database, db.user, db.password, {
-    host: db.host,
-    dialect: 'mysql'
-});
-
-const cartItem = sequelize.define('carditem', {
-    product_id: {
-        type: DataTypes.INTEGER,
-        references:{
-          model:'product',
-          key:'product_id'
-        }
-    },
-    User_id: {
-        type: DataTypes.INTEGER,
-        references: {
-            model: 'usershop',
-            key: 'User_id'
-        }
-
-    },
-    number:{
-        type:DataTypes.INTEGER,
-    }
-}, {
-    tableName: 'carditem',
-    timestamps: false
-}
-);
+const cartItem=cartItem1;
 async function getAll() {
     try {
         return await cartItem.findAll();
