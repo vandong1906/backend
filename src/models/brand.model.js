@@ -1,10 +1,7 @@
 const { Sequelize, DataTypes} = require('sequelize');
-const db = require('../configs/db.config')
+const sequelize = require('../configs/db.config')
 
-const sequelize = new Sequelize(db.database, db.user, db.password, {
-    host: db.host,
-    dialect: 'mysql'
-});
+
 
 const Brands = sequelize.define('brand', {
     Brand_id: {

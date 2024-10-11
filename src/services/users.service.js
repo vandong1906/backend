@@ -30,14 +30,15 @@ async function create(Users) {
 async function update(params,Users) {
     try {
         const temp = await Usershop.findOne(
-            {where:{Users_id:params}})
+            {where:{User_id:params}})
 
         await temp.update({
             User_Name:Users.User_Name,
             Role_id:Users.Role_id,
+            password:Users.password
         })
         await temp.save();
-        return Users.findAll()
+        return Usershop.findAll()
     } catch (error) {
         throw error
     }

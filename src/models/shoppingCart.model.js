@@ -1,11 +1,7 @@
 const { Sequelize, DataTypes } = require('sequelize');
-const db = require('../configs/db.config');
+const sequelize = require('../configs/db.config');
 const Usershop = require('./user.model');
 
-const sequelize = new Sequelize(db.database, db.user, db.password, {
-    host: db.host,
-    dialect: 'mysql'
-});
 
 
 const shoppingCart = sequelize.define('shoppingcart', {
