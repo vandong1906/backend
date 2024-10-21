@@ -13,9 +13,6 @@ const Roles = sequelize.define('Role', {
         allowNull: false
     }
    
-}, {
-    tableName: 'role',
-    timestamps: false
 }
 );
 module.exports=Roles;

@@ -11,11 +11,11 @@ const shoppingCart = sequelize.define('shoppingcart', {
         autoIncrement: true,
     },
     Date: DataTypes.DATE
-}, {
-    timestamps: false,
-    tableName: 'shoppingcart'
 }
 );
 
-Usershop.hasMany(shoppingCart);
+Usershop.hasMany(shoppingCart,{
+    sourceKey:'User_id',
+    foreignKey:'User_id'
+});
 module.exports = shoppingCart;

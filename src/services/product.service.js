@@ -1,7 +1,8 @@
+const Image = require('../models/image.model');
 const products=require('../models/product.model')
 async function getAll() {
     try {
-        return await products.findAll();
+        return await products.findAll({include:Image});
     }
     catch (error) {
 

@@ -1,29 +1,27 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = require('../configs/db.config')
 
+const products = require('../models/product.model');
 
-const image = sequelize.define('image', {
-    image_id: {
-        primaryKey: true,
-        autoIncrement: true,
-        type: DataTypes.INTEGER
-    },
-    imageUrl: {
-        type:DataTypes.STRING,
-        allowNull: false
-    },
+const Image = sequelize.define("image", {
+  name: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  data: {
+    type: DataTypes.BLOB('long'), 
+    allowNull: false,
+  },
+  mimetype: {
+    type: DataTypes.STRING,
+  },
+  size: {
+    type: DataTypes.INTEGER,
+  }
 
-    product_id: {
-        type: DataTypes.INTEGER,
-        references: {
-            model: 'product',
-            key: 'product_id'
-        }
-
-    }
-}, {
-    tableName: 'image',
-    timestamps: false
-}
-);
-module.exports=image;
+});
+products.hasMany(Image,{
+  sourceKey:'product_id',
+  foreignKey:'product_id'
+})
+module.exports = Image;

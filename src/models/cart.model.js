@@ -2,25 +2,30 @@ const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = require('../configs/db.config')
 
 
-const product = require('./product.model');
 const shoppingCart = require('./shoppingCart.model');
-const products = require('./product.model');
 
+
+
+const products= require('./product.model');
 const cart = sequelize.define('card', {
     cart_id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
-    number: DataTypes.NUMBER,
-    Date: DataTypes.DATE,
-}, {
-    timestamps: false,
-    tableName: 'cart'
-}
+    number: DataTypes.INTEGER,
+    Ngay: DataTypes.DATE,
+},
 );
-cart.hasMany(products)
-shoppingCart.hasMany(cart);
+
+products.hasMany(cart,{
+    sourceKey:'product_id',
+    foreignKey:'product_id'
+})
+shoppingCart.hasMany(cart, {
+    foreignKey: 'shoppingCart_id',
+    sourceKey: 'shoppingCart_id'
+})
 
 
 module.exports = cart;

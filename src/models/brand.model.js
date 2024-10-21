@@ -1,5 +1,6 @@
 const { Sequelize, DataTypes} = require('sequelize');
-const sequelize = require('../configs/db.config')
+const sequelize = require('../configs/db.config');
+const Country = require('./country.model');
 
 
 
@@ -13,19 +14,11 @@ const Brands = sequelize.define('brand', {
         type:DataTypes.STRING,
         allowNull: false
     },
-
-    Country_id: {
-        type: DataTypes.INTEGER,
-        references: {
-            model: 'country',
-            key: 'Country_id'
-        }
-
-    }
-}, {
-    tableName: 'brand',
-    timestamps: false
 }
 );
+Country.hasMany(Brands,{
+    sourceKey:'Country_id',
+    foreignKey:'Country_id'
+})
 
 module.exports= Brands;

@@ -1,5 +1,6 @@
 const { Sequelize, DataTypes } = require('sequelize');
-const sequelize = require('../configs/db.config')
+const sequelize = require('../configs/db.config');
+const Roles = require('./role.model');
 
 
 const Usershop = sequelize.define('usershop', {
@@ -13,20 +14,12 @@ const Usershop = sequelize.define('usershop', {
         allowNull: false
     },
     password:{
-        type:DataTypes.STRING
+        type:DataTypes.STRING(64),
     },
-
-    Role_id: {
-        type: DataTypes.INTEGER,
-        references: {
-            model: 'Role',
-            key: 'Role_id'
-        }
-
-    }
-}, {
-    tableName: 'usershop',
-    timestamps: false
 }
 );
+Roles.hasMany(Usershop,{
+    foreignKey:'Role_id',
+    sourceKey:'Role_id'
+})
 module.exports=Usershop;
