@@ -1,4 +1,4 @@
-const { Sequelize, DataTypes } = require('sequelize');
+const { Sequelize, DataTypes, BLOB } = require('sequelize');
 const sequelize = require('../configs/db.config');
 const Brands = require('./brand.model');
 
@@ -14,14 +14,18 @@ const products = sequelize.define('product', {
         type: DataTypes.STRING,
         allowNull: false
     },
-    number:{
-        type:DataTypes.INTEGER
-    } 
+    number: {
+        type: DataTypes.INTEGER
+    },
+    image_data: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    }
 }
 );
 
-Brands.hasMany(products,{
-    sourceKey:'Brand_id',
-    foreignKey:'Brand_id'
+Brands.hasMany(products, {
+    sourceKey: 'Brand_id',
+    foreignKey: 'Brand_id'
 }),
-module.exports=products;
+    module.exports = products;

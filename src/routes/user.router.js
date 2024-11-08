@@ -6,6 +6,8 @@ router.put('/:id', usersController.updateUser);
 router.delete('/:id', usersController.removeUser);
 /*-----------------------------------------Signup/Signin----------------------- */
 router.post('/signup', usersController.createUser);
+router.post('/logout', usersController.logout);
 /*--------------------get use -------------------- */
-router.post('/login', usersController.findUser);
+router.post('/', usersController.findUser);
+router.get('/get-cookie', usersController.getCookies);
 module.exports = router;

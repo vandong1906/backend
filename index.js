@@ -8,20 +8,22 @@ app.use(express.json());
 require('dotenv').config();
 
 const fileUpload = require('express-fileupload');
+var cookieParser = require('cookie-parser');
+app.use(cookieParser());
 app.use(fileUpload());
 app.use(express.json());
-const uploadPath = path.join('../backend', 'src', 'img');
+app.use('/uploads', express.static(path.join(__dirname, 'src','uploads')));
 /*-------------------------------test-------------------------------- */
 
 /*-------------------------------test-------------------------------- */
 app.use(cors({
-  'allowedHeaders': ['sessionId', 'Content-Type'],
-  'exposedHeaders': ['sessionId'],
-  'origin': '*',
-  'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  'preflightContinue': false
+  origin: 'http://localhost:3006',
+  allowedHeaders: ['sessionId', 'Content-Type'],
+  exposedHeaders: ['sessionId'],
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true, 
+  preflightContinue: false,
 }));
-
 
 
 const brand = require("./src/routes/brand.router");
@@ -33,7 +35,7 @@ const shoppingcart = require("./src/routes/shoppingCart.route");
 const cart = require("./src/routes/cart.router");
 const sequelize = require('./src/configs/db.config');
 const size = require("./src/routes/size.router");
-const image = require("./src/routes/image.router");
+
 
 sequelize.sync();
 
@@ -45,7 +47,7 @@ app.use('/v1/user', user);
 app.use('/v1/shoppingCart', shoppingcart);
 app.use('/v1/size', size);
 app.use('/v1/cart', cart);
-app.use('/v1/image',image );
+
 /* -------------------------Json Web Tokens --------------------*/
 
 app.listen(3000);

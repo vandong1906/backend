@@ -1,5 +1,5 @@
-const { getAll,create,remove,update} = require("../services/product.service")
-
+const { getAll,create,remove,update,getOne} = require("../services/product.service")
+const path=require('path');
 async function get(req, res, next) {
     try {
         res.json(await getAll())
@@ -7,12 +7,23 @@ async function get(req, res, next) {
         console.log("error",error)
     }
 }
+async function getProduct(req, res, next) {
+    try {
+        res.json(await getOne(req.params.id))
+    } catch (error) {
+        console.log("error",error)
+    }
+}
+
+
 
 async function createProduct(req,res,next) {
     try {
-        res.json(await create(req.body))
+        const imageFile = req.files.file;
+        res.json(await create(req.body,imageFile));
+       
     } catch (error) {
-        console.log("error",err)
+        console.log("error",error)
     }
 }
 async function updateProduct(req,res,next) {
@@ -34,4 +45,5 @@ module.exports={
     createProduct,
     updateProduct,
     removeProduct,
+    getProduct,
 }

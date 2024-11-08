@@ -30,21 +30,27 @@ async function find(Users) {
     } catch (error) {
         throw error;
     }
-
 }
 async function create(Users) {
+  
     try {
-        const {User_Name,password,Role_id}=Users;
-        const payload ={
-            User_Name,
-            password,Role_id
+      
+     
+        if (await find(Users) == null) {
+            const { User_Name, password } = Users;
+            const payload = {
+                User_Name,
+                password
+            }
+            await Usershop.create({
+                User_Name: User_Name,
+                password: password,
+                Role_id: 1,
+            })
+            return payload;
         }
-        await Usershop.create({
-            User_Name: Users.User_Name,
-            password: Users.password,
-            Role_id: 1,
-        })
-        return payload;
+        return 1;
+
     } catch (error) {
         console.log("error", error)
     }
